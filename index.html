@@ -24,6 +24,28 @@
 				<!-- The function  fetchCountryData() should be created on the script.js file -->
 				<button id="search-btn" onclick="fetchCountryData()">Search</button>
 			</section>
+
+			<!-- Results Section -->
+			<section id="results-section">
+				<!-- Country Details Card -->
+				<article id="country-card" class="card">
+					<h2>Country Details</h2>
+					<figure>
+						<img id="country-flag" alt="Country Flag" /> // empty src image
+						<figcaption>
+							<p id="country-name"></p>
+						</figcaption>
+					</figure>
+					<!-- Potenial data we can get from the country api -->
+					<ul>
+						<li><strong>Capital:</strong> <span id="country-capital"></span></li>
+						<li><strong>Region:</strong> <span id="country-region"></span></li>
+						<li><strong>Population:</strong> <span id="country-population"></span></li>
+						<li><strong>Currency:</strong> <span id="country-currency"></span></li>
+						<li><strong>Languages:</strong> <span id="country-languages"></span></li>
+					</ul>
+				</article>
+			</section>
 		</main>
 	</body>
 </html>
