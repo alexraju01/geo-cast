@@ -1,46 +1,56 @@
+// Constants variable
+const COUNTRY_URL = `https://restcountries.com/v3.1/name/`;
+
+const countryInput = document.getElementById("country-input");
+const searchSection = document.getElementById("search-section");
+
 async function fetchData(url) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`);
-    }
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error(error.message);
-    alert("Something went wrong");
-    throw error; // rethrow so caller knows it failed
-  }
+	try {
+		const response = await fetch(url);
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`);
+		}
+		return await response.json();
+	} catch (error) {
+		console.error(error.message);
+		throw error;
+	}
 }
 
-async function getData(countryName) {
-  const url = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
+async function fetchCountryData() {
+	const CountryName = countryInput.value.trim();
 
-  try {
-    const result = await fetchData(url);
-    console.log(result);
-    console.log(result[0].capital);
+	try {
+		const countryUrl = `${COUNTRY_URL}${CountryName}?fullText=true`;
+		const result = await fetchData(countryUrl);
 
-    const population = result[0].population.toLocaleString();
-    const currencies = result[0].currencies
-      ? Object.values(result[0].currencies)
-          .map((c) => `${c.name} (${c.symbol || ""})`)
-          .join(", ")
-      : "N/A";
+		const countryData = result[0];
 
-    mainContainer.innerHTML = `
-      <img src="${result[0].flags.png}" alt="country-flag" />
-      <h2>${result[0].name.common}</h2>
-      <p><strong>Capital:</strong> ${result[0].capital}</p>
-      <p><strong>Population:</strong> ${population}</p>
-      <p><strong>Currency:</strong> ${currencies}</p>
-    `;
-  } catch (error) {
-    console.error(error.message);
-  }
+		if (!countryData || countryData.length === 0) {
+			throw new Error("Country not found.");
+		}
+
+		const country = countryData;
+
+		updateCountryCard(country);
+	} catch (error) {
+		console.error(error.message);
+	}
 }
 
-submitBtn.addEventListener("click", function () {
-  const userInput = document.getElementById("country-name").value;
-  getData(userInput);
-});
+function updateCountryCard(country) {
+	const population = country.population;
+	const currencyKey = Object.keys(country.currencies || {});
+	const currency = currencyKey.length > 0 ? `${country.currencies[currencyKey[0]].name}` : "N/A";
+	const language = country.languages ? Object.values(country.languages).join(", ") : "N/A";
+	const capital = country.capital ? country.capital[0] : "N/A";
+
+	console.log(country.languages);
+	document.getElementById("country-name").textContent = country.name.common;
+	document.getElementById("country-flag").src = country.flags.png;
+	document.getElementById("country-flag").alt = `${country.name.common} flag`;
+	document.getElementById("country-population").textContent = population.toLocaleString();
+	document.getElementById("country-currency").textContent = currency;
+	document.getElementById("country-languages").textContent = language;
+	document.getElementById("country-capital").textContent = capital;
+}
