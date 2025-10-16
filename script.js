@@ -9,7 +9,7 @@ async function fetchData(url) {
   } catch (error) {
     console.error(error.message);
     alert("Something went wrong");
-    throw error; // rethrow so caller knows it failed
+    throw error; 
   }
 }
 
