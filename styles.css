@@ -86,7 +86,7 @@ header p {
 #results-section {
 	display: grid;
 	gap: 3.2rem;
-	grid-template-columns: 1fr;
+	grid-template-columns: 1fr 1fr;
 }
 
 /* Country Card */
