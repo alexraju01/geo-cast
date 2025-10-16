@@ -103,7 +103,8 @@ header p {
 	border-radius: 0.8rem;
 	box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.1);
 }
-#country-card h2 {
+#country-card h2,
+#weather-card h2 {
 	font-size: 2.4rem;
 	font-weight: bold;
 	border-bottom: 0.1rem solid #e5e7eb;
@@ -121,4 +122,44 @@ header p {
 
 #country-card li strong {
 	font-weight: 600;
+}
+
+/* Weather styles here */
+#weather-temp {
+	font-size: 3rem;
+	font-weight: 800;
+	color: #2563eb;
+}
+
+#weather-desc {
+	font-size: 1.8rem;
+	color: #6b7280;
+	margin-bottom: 1.6rem;
+}
+
+#weather-city {
+	font-size: 0.875rem;
+	color: #6b7280;
+}
+
+.weather-icon-bg {
+	width: 9.6rem;
+	height: 9.6rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background-color: #f3f4f6;
+}
+
+#weather-icon {
+	width: 8rem;
+	height: 8rem;
+}
+
+#weather-card ul {
+	margin-top: 1.5rem;
+	border-top: 1px solid #e5e7eb;
+	padding-top: 1rem;
+	color: #374151;
 }
