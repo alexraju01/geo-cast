@@ -3,9 +3,70 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Geo-cast</title>
+		<link rel="stylesheet" href="styles.css" />
+		<title>Geocast</title>
 	</head>
 	<body>
-		<h1>Hello guys</h1>
+		<main>
+			<!-- Header Section -->
+			<header>
+				<h1>Geocast</h1>
+				<p>Explore country details and the current weather of its capital.</p>
+			</header>
+
+			<!-- Search Section -->
+			<section id="search-section" class="card">
+				<input
+					type="text"
+					id="country-input"
+					placeholder="e.g., United Kingdom, Japan, Brazil"
+					autocomplete="off" />
+				<!-- The function  fetchCountryData() should be created on the script.js file -->
+				<button id="search-btn" onclick="fetchCountryData()">Search</button>
+			</section>
+
+			<!-- Results Section -->
+			<section id="results-section">
+				<!-- Country Details Card -->
+				<article id="country-card" class="card">
+					<h2>Country Details</h2>
+					<figure>
+						<!-- empty src image -->
+						<img id="country-flag" alt="Country Flag" />
+						<figcaption>
+							<p id="country-name"></p>
+						</figcaption>
+					</figure>
+					<ul>
+						<!-- Potenial data we can get from the country api -->
+						<!-- The tag with the id is where the real data from the api goes into -->
+						<li><strong>Capital:</strong> <span id="country-capital"></span></li>
+						<li><strong>Population:</strong> <span id="country-population"></span></li>
+						<li><strong>Currency:</strong> <span id="country-currency"></span></li>
+						<li><strong>Languages:</strong> <span id="country-languages"></span></li>
+					</ul>
+				</article>
+				<!-- Weather Details Card -->
+				<article id="weather-card" class="card">
+					<h2>Capital City Weather</h2>
+					<div>
+						<div id="weather-display">
+							<p id="weather-temp">--°C</p>
+							<p id="weather-desc">Loading...</p>
+							<p id="weather-city"></p>
+						</div>
+						<div class="weather-icon-bg">
+							<img id="weather-icon" alt="Weather Type Icon" />
+						</div>
+					</div>
+					<ul>
+						<li><strong>Feels Like:</strong> <span id="weather-feels"></span></li>
+						<li><strong>Humidity:</strong> <span id="weather-humidity"></span></li>
+						<li><strong>Wind Speed:</strong> <span id="weather-wind"></span></li>
+					</ul>
+				</article>
+			</section>
+		</main>
+		<script src="script.js"></script>
 	</body>
 </html>

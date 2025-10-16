@@ -1,0 +1,165 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	border: none;
+	list-style-type: none;
+}
+
+/*  this is to chnage 1rem=16px to 1rem=10px */
+/* This i beacuse its easier to work with 10ths */
+html {
+	font-size: 62.5%;
+}
+
+body {
+	padding: 3.2rem;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	font-family: Arial, sans-serif;
+	background-color: #f9fafb;
+	font-size: 1.6rem;
+}
+
+main {
+	width: 100%;
+	max-width: 96rem;
+	padding-top: 4rem;
+}
+
+/* Header */
+header {
+	text-align: center;
+	margin-bottom: 4rem;
+}
+
+header h1 {
+	font-size: 4rem;
+	font-weight: 800;
+	color: #111827;
+	margin-bottom: 0.8rem;
+}
+
+header p {
+	color: #6b7280;
+	font-size: 1.6rem;
+}
+
+.card {
+	background: white;
+	padding: 2.4rem;
+	border-radius: 1rem;
+	box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.1);
+}
+
+/* Search Section */
+#search-section {
+	display: flex;
+	gap: 1.6rem;
+	margin-bottom: 3.6rem;
+}
+#search-section input {
+	flex-grow: 1;
+	padding: 1rem;
+	border: 0.1rem solid #d1d5db;
+	border-radius: 0.8rem;
+	outline: none;
+	font-size: 1.6rem;
+}
+
+#search-section input:focus {
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.3);
+}
+
+#search-section button {
+	padding: 1.2rem 2.4rem;
+	border-radius: 0.8rem;
+	background-color: #3b82f6;
+	color: white;
+	font-weight: 600;
+}
+
+/* Results Section */
+#results-section {
+	display: grid;
+	gap: 3.2rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+/* Country Card */
+#country-card figure {
+	display: flex;
+	align-items: center;
+	gap: 1.6rem;
+	margin-bottom: 2.4rem;
+}
+
+#country-card img {
+	width: 8rem;
+	height: auto;
+	border-radius: 0.8rem;
+	box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.1);
+}
+#country-card h2,
+#weather-card h2 {
+	font-size: 2.4rem;
+	font-weight: bold;
+	border-bottom: 0.1rem solid #e5e7eb;
+	padding-bottom: 0.5rem;
+	margin-bottom: 1rem;
+	color: #111827;
+}
+
+#country-card ul {
+	padding: 0;
+	margin: 0;
+	color: #374151;
+	line-height: 1.6;
+}
+
+#country-card li strong {
+	font-weight: 600;
+}
+
+/* Weather styles here */
+#weather-temp {
+	font-size: 3rem;
+	font-weight: 800;
+	color: #2563eb;
+}
+
+#weather-desc {
+	font-size: 1.8rem;
+	color: #6b7280;
+	margin-bottom: 1.6rem;
+}
+
+#weather-city {
+	font-size: 0.875rem;
+	color: #6b7280;
+}
+
+.weather-icon-bg {
+	width: 9.6rem;
+	height: 9.6rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background-color: #f3f4f6;
+}
+
+#weather-icon {
+	width: 8rem;
+	height: 8rem;
+}
+
+#weather-card ul {
+	margin-top: 1.5rem;
+	border-top: 1px solid #e5e7eb;
+	padding-top: 1rem;
+	color: #374151;
+}
