@@ -4,43 +4,46 @@ async function fetchData(url) {
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
-    const result = await response.json();
-    return result;
+    return await response.json();
   } catch (error) {
     console.error(error.message);
-    alert("Something went wrong");
-    throw error; 
+    alert("Something went wrong. Please try again.");
+    throw error;
   }
 }
 
-async function getData(countryName) {
+async function fetchCountryData() {
+  const input = document.getElementById("country-input");
+  const countryName = input.value.trim();
+
+  if (!countryName) {
+    alert("Please enter a country name.");
+    return;
+  }
+
   const url = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
 
   try {
     const result = await fetchData(url);
-    console.log(result);
-    console.log(result[0].capital);
+    const country = result[0];
 
-    const population = result[0].population.toLocaleString();
-    const currencies = result[0].currencies
-      ? Object.values(result[0].currencies)
+    // Extract data
+    const flag = country.flags?.png || country.flags?.svg || "";
+    const population = country.population.toLocaleString();
+    const currencies = country.currencies
+      ? Object.values(country.currencies)
           .map((c) => `${c.name} (${c.symbol || ""})`)
           .join(", ")
       : "N/A";
 
-    mainContainer.innerHTML = `
-      <img src="${result[0].flags.png}" alt="country-flag" />
-      <h2>${result[0].name.common}</h2>
-      <p><strong>Capital:</strong> ${result[0].capital}</p>
-      <p><strong>Population:</strong> ${population}</p>
-      <p><strong>Currency:</strong> ${currencies}</p>
-    `;
+    // Update HTML
+    document.getElementById("country-flag").src = flag;
+    document.getElementById("country-flag").alt = `${country.name.common} flag`;
+    document.getElementById("country-population").textContent = population;
+    document.getElementById("country-currency").textContent = currencies;
+    document.getElementById("country-name").textContent = country.name.common;
+
   } catch (error) {
     console.error(error.message);
   }
 }
-
-submitBtn.addEventListener("click", function () {
-  const userInput = document.getElementById("country-name").value;
-  getData(userInput);
-});
