@@ -35,7 +35,7 @@ const hideUI = () => {
 const displayMessage = (message, isError = true) => {
 	console.log("Display Message:", message);
 	messageDiv.textContent = message;
-	messageDiv.style.color = isError ? "red" : "green";
+	messageDiv.style.color = isError ? "#ef4444" : "#22c55e";
 	messageDiv.style.display = "block";
 };
 
@@ -146,3 +146,7 @@ async function fetchCapitalWeather(capitalName) {
 		displayMessage(`Weather data for ${capitalName} failed to load.`, true);
 	}
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+	displayMessage("Enter a country name and press 'Search' ", false);
+});
