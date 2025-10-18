@@ -7,7 +7,7 @@ const OPEN_WEATHER_API_KEY = "b3ef07cd5bbcb14775ea343177826168";
 const countryInput = document.getElementById("country-input");
 const searchSection = document.getElementById("search-section");
 const resultsSection = document.getElementById("results-section");
-
+const loadingSpinner = document.getElementById("loading-spinner");
 async function fetchData(url) {
 	try {
 		const response = await fetch(url);
@@ -27,6 +27,7 @@ async function fetchData(url) {
 const hideUi = () => {
 	console.log("Hiding UI elements...");
 	resultsSection.style.display = "none";
+	loadingSpinner.style.display = "none";
 };
 
 async function fetchCountryData() {
@@ -43,6 +44,7 @@ async function fetchCountryData() {
 			throw new Error("Country not found.");
 		}
 
+		loadingSpinner.style.display = "flex";
 		const country = countryData;
 		const capital = country.capital ? country.capital[0] : null;
 		updateCountryCard(country);
@@ -57,6 +59,8 @@ async function fetchCountryData() {
 		}
 	} catch (error) {
 		console.error(error.message);
+	} finally {
+		loadingSpinner.style.display = "none";
 	}
 }
 

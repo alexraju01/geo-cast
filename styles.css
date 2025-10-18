@@ -169,6 +169,7 @@ header p {
 	justify-content: center;
 	align-items: center;
 	margin: 1rem 0;
+	display: none;
 }
 
 .spinner {
