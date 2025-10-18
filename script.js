@@ -6,6 +6,7 @@ const OPEN_WEATHER_API_KEY = "b3ef07cd5bbcb14775ea343177826168";
 
 const countryInput = document.getElementById("country-input");
 const searchSection = document.getElementById("search-section");
+const resultsSection = document.getElementById("results-section");
 
 async function fetchData(url) {
 	try {
@@ -23,7 +24,13 @@ async function fetchData(url) {
 	}
 }
 
+const hideUi = () => {
+	console.log("Hiding UI elements...");
+	resultsSection.style.display = "none";
+};
+
 async function fetchCountryData() {
+	hideUi();
 	const CountryName = countryInput.value.trim();
 
 	try {
@@ -39,6 +46,8 @@ async function fetchCountryData() {
 		const country = countryData;
 		const capital = country.capital ? country.capital[0] : null;
 		updateCountryCard(country);
+		resultsSection.style.display = "grid";
+
 		// 2. Fetch Weather Data (OpenWeatherMap API)
 		if (capital) {
 			await fetchCapitalWeather(capital);

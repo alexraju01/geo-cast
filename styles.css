@@ -84,7 +84,7 @@ header p {
 
 /* Results Section */
 #results-section {
-	display: grid;
+	display: none;
 	gap: 3.2rem;
 	grid-template-columns: 1fr 1fr;
 }
