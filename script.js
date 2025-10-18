@@ -8,6 +8,8 @@ const countryInput = document.getElementById("country-input");
 const searchSection = document.getElementById("search-section");
 const resultsSection = document.getElementById("results-section");
 const loadingSpinner = document.getElementById("loading-spinner");
+const messageDiv = document.getElementById("message-area");
+
 async function fetchData(url) {
 	try {
 		const response = await fetch(url);
@@ -24,41 +26,53 @@ async function fetchData(url) {
 	}
 }
 
-const hideUi = () => {
-	console.log("Hiding UI elements...");
+const hideUI = () => {
 	resultsSection.style.display = "none";
 	loadingSpinner.style.display = "none";
+	messageDiv.style.display = "none";
+};
+
+const displayMessage = (message, isError = true) => {
+	console.log("Display Message:", message);
+	messageDiv.textContent = message;
+	messageDiv.style.color = isError ? "red" : "green";
+	messageDiv.style.display = "block";
 };
 
 async function fetchCountryData() {
-	hideUi();
-	const CountryName = countryInput.value.trim();
+	hideUI();
+	const countryName = countryInput.value.trim();
+
+	if (!countryName) {
+		displayMessage("Please enter a country name.", true);
+		return;
+	}
 
 	try {
-		const countryUrl = `${COUNTRY_URL}${encodeURIComponent(CountryName)}?fullText=true`;
-		const result = await fetchData(countryUrl);
-
-		const countryData = result[0];
+		const countryUrl = `${COUNTRY_URL}${encodeURIComponent(countryName)}?fullText=true`;
+		const countryData = await fetchData(countryUrl);
+		console.log(countryData.length);
 
 		if (!countryData || countryData.length === 0) {
-			throw new Error("Country not found.");
+			displayMessage("Country not found.", true);
 		}
 
-		loadingSpinner.style.display = "flex";
-		const country = countryData;
+		const country = countryData[0];
 		const capital = country.capital ? country.capital[0] : null;
+
+		// loadingSpinner.style.display = "flex";
 		updateCountryCard(country);
-		resultsSection.style.display = "grid";
 
 		// 2. Fetch Weather Data (OpenWeatherMap API)
 		if (capital) {
 			await fetchCapitalWeather(capital);
 		} else {
 			displayMessage(`Country details loaded, but no capital city found to fetch weather.`, false);
-			document.getElementById("weather-card").classList.add("opacity-50");
 		}
+		resultsSection.style.display = "grid";
 	} catch (error) {
 		console.error(error.message);
+		displayMessage(`Error: ${error.message}. Please try a different country name.`, true);
 	} finally {
 		loadingSpinner.style.display = "none";
 	}
