@@ -163,3 +163,46 @@ header p {
 	padding-top: 1rem;
 	color: #374151;
 }
+
+#loading-spinner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem 0;
+}
+
+.spinner {
+	width: 48px;
+	height: 48px;
+	animation: rotate 1.4s linear infinite;
+}
+
+.spinner-ring {
+	stroke-dasharray: 80 60;
+	stroke-dashoffset: 0;
+	transform-origin: center;
+	animation: dash 1.5s ease-in-out infinite;
+}
+
+/* Rotation of the entire spinner */
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Animate the stroke arc */
+@keyframes dash {
+	0% {
+		stroke-dasharray: 1, 200;
+		stroke-dashoffset: 0;
+	}
+	50% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -35;
+	}
+	100% {
+		stroke-dasharray: 90, 150;
+		stroke-dashoffset: -124;
+	}
+}
