@@ -60,7 +60,7 @@ async function fetchCountryData() {
 		const country = countryData[0];
 		const capital = country.capital ? country.capital[0] : null;
 
-		// loadingSpinner.style.display = "flex";
+		loadingSpinner.style.display = "flex";
 		updateCountryCard(country);
 
 		// 2. Fetch Weather Data (OpenWeatherMap API)
