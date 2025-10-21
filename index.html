@@ -25,6 +25,22 @@
 				<button id="search-btn" onclick="fetchCountryData()">Search</button>
 			</section>
 
+			<!-- Loading & Error Messages -->
+			<div id="message-area"></div>
+			<div id="loading-spinner">
+				<svg class="spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+					<circle
+						class="spinner-ring"
+						cx="12"
+						cy="12"
+						fill="none"
+						r="10"
+						stroke-width="2"
+						stroke="#4e25d2"
+						stroke-dasharray="49 60" />
+				</svg>
+			</div>
+
 			<!-- Results Section -->
 			<section id="results-section">
 				<!-- Country Details Card -->
